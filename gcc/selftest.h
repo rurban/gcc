@@ -67,6 +67,12 @@ extern void fail (const location &loc, const char *msg)
 extern void fail_formatted (const location &loc, const char *fmt, ...)
   ATTRIBUTE_PRINTF_2 ATTRIBUTE_NORETURN;
 
+/* As "fail_formatted", but do not abort.
+   Use this *before* failing to provide extra information.  */
+
+extern void note_formatted (const location &loc, const char *fmt, ...)
+  ATTRIBUTE_PRINTF_2;
+
 /* Implementation detail of ASSERT_STREQ.  */
 
 extern void assert_streq (const location &loc,
@@ -264,6 +270,7 @@ extern void spellcheck_tree_cc_tests ();
 extern void splay_tree_cc_tests ();
 extern void sreal_cc_tests ();
 extern void store_merging_cc_tests ();
+extern void stringpool_c_tests ();
 extern void tree_cc_tests ();
 extern void tree_cfg_cc_tests ();
 extern void tristate_cc_tests ();
