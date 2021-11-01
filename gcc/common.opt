@@ -638,6 +638,10 @@ Whardened
 Common Var(warn_hardened) Init(1) Warning
 Warn when -fhardened did not enable an option from its set.
 
+Whomoglyph
+Common Var(warn_homoglyph) Init(1) Warning
+Warn when an identifier has the same appearance as a different identifier
+
 Whsa
 Common Ignore Warning
 Does nothing.  Preserved for backward compatibility.

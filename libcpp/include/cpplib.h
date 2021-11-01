@@ -1699,6 +1699,8 @@ enum cpp_xid_property {
 
 unsigned int cpp_check_xid_property (cppchar_t c);
 
+unsigned char cpp_combining_class (cppchar_t c);
+
 /* In errors.cc */
 
 /* RAII class to suppress CPP diagnostics in the current scope.  */

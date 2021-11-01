@@ -55,6 +55,10 @@ struct ht
   /* Call back, allocate something that hangs off a node like a cpp_macro.
      NULL means use the usual allocator.  */
   void * (*alloc_subobject) (size_t);
+  /* Call back, a new node has been allocated.  */
+  void (*on_new_node) (hashnode);
+  /* Call back, an existing node has been reused.  */
+  void (*on_existing_node) (hashnode);
 
   unsigned int nslots;		/* Total slots in the entries array.  */
   unsigned int nelements;	/* Number of live elements.  */
