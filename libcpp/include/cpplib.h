@@ -1366,6 +1366,9 @@ extern bool cpp_pedwarning (cpp_reader *, enum cpp_warning_reason,
 extern bool cpp_warning_syshdr (cpp_reader *, enum cpp_warning_reason reason,
 				const char *msgid, ...)
   ATTRIBUTE_PRINTF_3;
+extern bool cpp_warning_at (cpp_reader *, enum cpp_warning_reason,
+			    rich_location *richloc, const char *msgid, ...)
+  ATTRIBUTE_PRINTF_4;
 
 /* As their counterparts above, but use RICHLOC.  */
 extern bool cpp_warning_at (cpp_reader *, enum cpp_warning_reason,
@@ -1653,5 +1656,7 @@ enum cpp_xid_property {
 };
 
 unsigned int cpp_check_xid_property (cppchar_t c);
+
+unsigned char cpp_combining_class (cppchar_t c);
 
 #endif /* ! LIBCPP_CPPLIB_H */
