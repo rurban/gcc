@@ -921,6 +921,29 @@ struct ucnrange {
 /* ISO 10646 defines the UCS codespace as the range 0-0x10FFFF inclusive.  */
 #define UCS_LIMIT 0x10FFFF
 
+/* Get the combining class for C.  */
+
+unsigned char
+cpp_combining_class (cppchar_t c)
+{
+  int mn, mx, md;
+
+  if (c > UCS_LIMIT)
+    return 0;
+
+  mn = 0;
+  mx = ARRAY_SIZE (ucnranges) - 1;
+  while (mx != mn)
+    {
+      md = (mn + mx) / 2;
+      if (c <= ucnranges[md].end)
+	mx = md;
+      else
+	mn = md + 1;
+    }
+  return ucnranges[mn].combine;
+}
+
 /* Returns 1 if C is valid in an identifier, 2 if C is valid except at
    the start of an identifier, and 0 if C is not valid in an
    identifier.  We assume C has already gone through the checks of

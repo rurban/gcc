@@ -1288,6 +1288,9 @@ extern bool cpp_pedwarning (cpp_reader *, enum cpp_warning_reason,
 extern bool cpp_warning_syshdr (cpp_reader *, enum cpp_warning_reason reason,
 				const char *msgid, ...)
   ATTRIBUTE_PRINTF_3;
+extern bool cpp_warning_at (cpp_reader *, enum cpp_warning_reason,
+			    rich_location *richloc, const char *msgid, ...)
+  ATTRIBUTE_PRINTF_4;
 
 /* As their counterparts above, but use RICHLOC.  */
 extern bool cpp_warning_at (cpp_reader *, enum cpp_warning_reason,
@@ -1564,5 +1567,7 @@ int cpp_wcwidth (cppchar_t c);
 
 bool cpp_input_conversion_is_trivial (const char *input_charset);
 int cpp_check_utf8_bom (const char *data, size_t data_length);
+
+unsigned char cpp_combining_class (cppchar_t ch);
 
 #endif /* ! LIBCPP_CPPLIB_H */

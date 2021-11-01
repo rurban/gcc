@@ -119,7 +119,11 @@ ht_lookup_with_hash (cpp_hash_table *table, const unsigned char *str,
       else if (node->hash_value == hash
 	       && HT_LEN (node) == (unsigned int) len
 	       && !memcmp (HT_STR (node), str, len))
-	return node;
+	{
+	  if (table->on_existing_node)
+	    (*table->on_existing_node) (node);
+	  return node;
+	}
 
       /* hash2 must be odd, so we're guaranteed to visit every possible
 	 location in the table during rehashing.  */
@@ -141,7 +145,11 @@ ht_lookup_with_hash (cpp_hash_table *table, const unsigned char *str,
 	  else if (node->hash_value == hash
 		   && HT_LEN (node) == (unsigned int) len
 		   && !memcmp (HT_STR (node), str, len))
-	    return node;
+	    {
+	      if (table->on_existing_node)
+		(*table->on_existing_node) (node);
+	      return node;
+	    }
 	}
     }
 
@@ -172,6 +180,9 @@ ht_lookup_with_hash (cpp_hash_table *table, const unsigned char *str,
   if (++table->nelements * 4 >= table->nslots * 3)
     /* Must expand the string table.  */
     ht_expand (table);
+
+  if (table->on_new_node)
+    (*table->on_new_node) (node);
 
   return node;
 }
