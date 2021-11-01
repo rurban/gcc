@@ -63,6 +63,22 @@ fail_formatted (const location &loc, const char *fmt, ...)
   abort ();
 }
 
+/* As "fail_formatted", but do not abort.
+   Use this *before* failing to provide extra information.  */
+
+void
+note_formatted (const location &loc, const char *fmt, ...)
+{
+  va_list ap;
+
+  fprintf (stderr, "%s:%i: %s: NOTE: ", loc.m_file, loc.m_line,
+	   loc.m_function);
+  va_start (ap, fmt);
+  vfprintf (stderr, fmt, ap);
+  va_end (ap);
+  fprintf (stderr, "\n");
+}
+
 /* Implementation detail of ASSERT_STREQ.
    Compare val1 and val2 with strcmp.  They ought
    to be non-NULL; fail gracefully if either or both are NULL.  */
