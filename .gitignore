@@ -62,6 +62,9 @@ lost+found
 LAST_UPDATED
 REVISION
 
+# ignore ./contrib/unicode/from_glibc/utf8_gen.py output
+contrib/unicode/UTF-8
+
 stamp-*
 *.stamp
 

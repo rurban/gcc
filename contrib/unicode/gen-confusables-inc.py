@@ -109,10 +109,12 @@ class Confusables:
                 raise ValueError('unexpected remapping from ASCII (0x%x)\n'
                                  % (ord(item.src_chr)))
 
-            f_out.write('BEGIN_SRC (0x%x)\n' % (ord(item.src_chr)))
-            for dst_chr in item.dst_chrs:
-                f_out.write('  DST (0x%x);\n' % ord(dst_chr))
-            f_out.write('END_SRC\n\n')
+            # But we ignore all of the ASCII confusables
+            if ord(item.src_chr) >= 0x80:
+                f_out.write('BEGIN_SRC (0x%x)\n' % (ord(item.src_chr)))
+                for dst_chr in item.dst_chrs:
+                    f_out.write('  DST (0x%x);\n' % ord(dst_chr))
+                f_out.write('END_SRC\n\n')
 
 with open('confusables.txt') as f_in:
     c = Confusables.from_stream(f_in)
