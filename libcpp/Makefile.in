@@ -203,7 +203,7 @@ update-po: $(CATALOGS:.gmo=.pox)
 
 .PHONY: installdirs install install-strip mostlyclean clean distclean \
   maintainer-clean check installcheck dvi pdf html info install-info \
-  install-man update-po install-html install-pdf install-dvi
+  install-man update-po install-html install-pdf install-dvi update-unicode-data
 
 # Dependency rule.
 COMPILE.base = $(COMPILER) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(COMPILER_FLAGS) -c
@@ -220,6 +220,43 @@ COMPILE = source='$<' object='$@' libtool=no DEPDIR=$(DEPDIR) $(DEPMODE) \
 # step.
 POSTCOMPILE =
 endif
+
+UCNID = $(srcdir)/../contrib/unicode/UnicodeData.txt			\
+	$(srcdir)/../contrib/unicode/DerivedNormalizationProps.txt	\
+	$(srcdir)/../contrib/unicode/DerivedCoreProperties.txt
+UCNWC = $(srcdir)/../contrib/unicode/UnicodeData.txt		\
+	$(srcdir)/../contrib/unicode/EastAsianWidth.txt	\
+	$(srcdir)/../contrib/unicode/PropList.txt
+#UCD_VERSION = 14.0.0
+UCD_VERSION := $(shell grep Version: $(srcdir)/../contrib/unicode/confusables.txt | cut -c12-)
+
+update-unicode-data:
+	-cd $(srcdir)/../contrib/unicode && \
+	  wget -N https://www.unicode.org/Public/UNIDATA/UnicodeData.txt \
+	    https://www.unicode.org/Public/UNIDATA/DerivedNormalizationProps.txt \
+	    https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt \
+	    https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt \
+	    https://www.unicode.org/Public/UNIDATA/PropList.txt \
+	    https://www.unicode.org/Public/security/latest/confusables.txt \
+	    https://www.unicode.org/Public/UNIDATA/NormalizationTest.txt && \
+	  mv -f NormalizationTest.txt $(srcdir)/../gcc/testsuite/selftests/NormalizationTest.txt
+	$(MAKE) $(srcdir)/ucnid.h $(srcdir)/generated_cpp_wcwidth.h 
+
+$(srcdir)/ucnid.h: makeucnid$(EXEEXT) $(UCNID) ucnid.tab
+	./makeucnid $(srcdir)/ucnid.tab $(UCNID) >ucnid.tmp && \
+	    mv ucnid.tmp $(srcdir)/ucnid.h
+
+$(srcdir)/generated_cpp_wcwidth.h: $(srcdir)/../contrib/unicode/gen_wcwidth.py $(UCNWC)
+	cd $(srcdir)/../contrib/unicode && \
+		python gen_wcwidth.py $(UCD_VERSION) >generated_cpp_wcwidth.tmp && \
+		mv generated_cpp_wcwidth.tmp ../../libcpp/generated_cpp_wcwidth.h
+
+$(srcdir)/../gcc/confusables.inc: $(srcdir)/../contrib/unicode/confusables.txt
+	cd $(srcdir)/../contrib/unicode && \
+		python gen-confusables-inc.py
+$(srcdir)/../gcc/decomposition.inc: $(srcdir)/../contrib/unicode/UnicodeData.txt
+	cd $(srcdir)/../contrib/unicode && \
+		python gen-decomposition-inc.py
 
 # Implicit rules and I18N
 
