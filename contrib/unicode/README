@@ -8,8 +8,9 @@ following files that are distributed by the Unicode Consortium:
 ftp://ftp.unicode.org/Public/UNIDATA/UnicodeData.txt
 ftp://ftp.unicode.org/Public/UNIDATA/EastAsianWidth.txt
 ftp://ftp.unicode.org/Public/UNIDATA/PropList.txt
+https://www.unicode.org/Public/security/latest/confusables.txt
 
-These three files have been added to source control in this directory;
+These files have been added to source control in this directory;
 please see unicode-license.txt for the relevant copyright information.
 
 In order to keep in sync with glibc's wcwidth as much as possible, it is
