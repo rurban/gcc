@@ -2778,7 +2778,8 @@ generated_files = config.h tm.h $(TM_P_H) $(TM_D_H) $(TM_H) multilib.h \
        gimple-match.cc generic-match.cc \
        c-family/c-target-hooks-def.h d/d-target-hooks-def.h \
        case-cfn-macros.h \
-       cfn-operators.pd omp-device-properties.h
+       cfn-operators.pd omp-device-properties.h \
+       confusables.inc decomposition.inc
 
 #
 # How to compile object files to run on the build machine.
@@ -3014,6 +3015,18 @@ gengtype-lex.cc : gengtype-lex.l
 	  cat $@ >> $@.tmp; \
 	  mv $@.tmp $@; \
 	}
+
+# Generated unicode data files
+.PHONY: update-unicode-data
+update-unicode-data: confusables.inc decomposition.inc
+	$(MAKE) $(RECURSE_FLAGS_TO_PASS) -C ../libcpp update-unicode-data
+$(srcdir)/stringpool.cc: $(srcdir)/confusables.inc $(srcdir)/decomposition.inc
+$(srcdir)/confusables.inc: $(srcdir)/../contrib/unicode/gen-confusables-inc.py $(srcdir)/../contrib/unicode/confusables.txt
+	cd $(srcdir)/../contrib/unicode && \
+		python gen-confusables-inc.py
+$(srcdir)/decomposition.inc: $(srcdir)/../contrib/unicode/UnicodeData.txt
+	cd $(srcdir)/../contrib/unicode && \
+		python gen-decomposition-inc.py
 
 #
 # Remake internationalization support.
