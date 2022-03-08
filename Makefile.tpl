@@ -907,6 +907,10 @@ all-target: maybe-all-target-[+module+][+ IF bootstrap +]
 @endif target-[+module+]-no-bootstrap[+
   ENDIF bootstrap +][+ ENDFOR target_modules +]
 
+.PHONY: update-unicode-data
+update-unicode-data:
+	$(MAKE) $(RECURSE_FLAGS_TO_PASS) -C ../libcpp update-unicode-data
+
 # Do a target for all the subdirectories.  A ``make do-X'' will do a
 # ``make X'' in all subdirectories (because, in general, there is a
 # dependency (below) of X upon do-X, a ``make X'' will also do this,
