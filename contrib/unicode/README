@@ -9,12 +9,13 @@ The idea is to produce the necessary lookup tables
 way, starting from the following files that are distributed by the Unicode
 Consortium:
 
-ftp://ftp.unicode.org/Public/UNIDATA/UnicodeData.txt
-ftp://ftp.unicode.org/Public/UNIDATA/EastAsianWidth.txt
-ftp://ftp.unicode.org/Public/UNIDATA/PropList.txt
-ftp://ftp.unicode.org/Public/UNIDATA/DerivedNormalizationProps.txt
-ftp://ftp.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt
-ftp://ftp.unicode.org/Public/UNIDATA/NameAliases.txt
+https://www.unicode.org/Public/UNIDATA/UnicodeData.txt
+https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt
+https://www.unicode.org/Public/UNIDATA/PropList.txt
+https://www.unicode.org/Public/UNIDATA/DerivedNormalizationProps.txt
+https://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt
+https://ftp.unicode.org/Public/UNIDATA/NameAliases.txt
+https://www.unicode.org/Public/security/latest/confusables.txt
 
 Three additional files are needed for lookup tables in libstdc++:
 
@@ -38,7 +39,7 @@ localedata/unicode-gen/utf8_gen.py
 And the most recent versions added to GCC are from glibc git commit:
 064c708c78cc2a6b5802dce73108fc0c1c6bfc80
 
-The script gen_wcwidth.py found here contains the GCC-specific code to
+Finally, the script gen_wcwidth.py found here contains the GCC-specific code to
 map glibc's output to the lookup tables we require.  This script should not need
 to change, unless there are structural changes to the Unicode data files or to
 the glibc code.  Similarly, makeucnid.cc in ../../libcpp contains the logic to
@@ -46,7 +47,7 @@ produce ucnid.h.
 
 The procedure to update GCC's Unicode support is the following:
 
-1.  Update the six Unicode data files from the above URLs.
+1.  Update the first six Unicode data files from the above URLs.
 
 2.  Update the two glibc files in from_glibc/ from glibc's git.  Update
     the commit number above in this README.
