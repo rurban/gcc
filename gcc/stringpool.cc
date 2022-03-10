@@ -820,6 +820,10 @@ maybe_warn_on_homoglyph (tree id)
       gcc_rich_location richloc (input_location);
       richloc.set_escape_on_output (true);
       bool warned;
+#if __GNUC__ >= 10
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wformat-diag"
+#endif
       if (id == skel_id)
 	{
 	  warned = warning_meta (&richloc, m, OPT_Whomoglyph,
@@ -834,6 +838,9 @@ maybe_warn_on_homoglyph (tree id)
 				 IDENTIFIER_POINTER (id),
 				 escaped_id.get_str ());
 	}
+#if __GNUC__ >= 10
+#  pragma GCC diagnostic pop
+#endif
       if (warned)
 	{
 	  gcc_rich_location slot_richloc (slot->m_loc);
