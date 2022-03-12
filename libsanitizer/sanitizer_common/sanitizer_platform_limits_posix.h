@@ -192,7 +192,7 @@ struct __sanitizer_struct_mallinfo {
 
 #if SANITIZER_LINUX && !SANITIZER_ANDROID
 struct __sanitizer_struct_mallinfo {
-  int v[10];
+  long v[10];
 };
 
 extern unsigned struct_ustat_sz;
