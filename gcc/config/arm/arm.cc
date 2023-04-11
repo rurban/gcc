@@ -28789,7 +28789,7 @@ arm_print_asm_arch_directives (FILE *stream, cl_target_option *targ_options)
 
   if (strcmp (build_target.arch_name, "armv7ve") == 0)
     {
-      /* Keep backward compatability for assemblers which don't support
+      /* Keep backward compatibility for assemblers which don't support
 	 armv7ve.  Fortunately, none of the following extensions are reset
 	 by a .fpu directive.  */
       asm_fprintf (stream, "\t.arch armv7-a\n");
