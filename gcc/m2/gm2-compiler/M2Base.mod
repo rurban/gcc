@@ -2020,7 +2020,7 @@ END IsUserType ;
    MixTypes - given types, t1 and t2, returns a type symbol that
               provides expression type compatibility.
               NearTok is used to identify the source position if a type
-              incompatability occurs.
+              incompatibility occurs.
 *)
 
 PROCEDURE MixTypes (t1, t2: CARDINAL; NearTok: CARDINAL) : CARDINAL ;
