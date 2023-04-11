@@ -366,7 +366,7 @@ NSInsetRect(NSRect aRect, CGFloat dX, CGFloat dY) GS_GEOM_ATTR;
 /** Returns the rectangle obtained by moving each of aRect's
  * horizontal sides inward by dy and each of aRect's vertical
  * sides inward by dx.<br />
- * NB. For MacOS-X compatability, this is permitted to return
+ * NB. For MacOS-X compatibility, this is permitted to return
  * a rectanglew with nagative width or height, strange as that seems.
  */
 GS_GEOM_SCOPE NSRect

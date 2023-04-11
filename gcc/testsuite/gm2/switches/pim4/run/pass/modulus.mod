@@ -57,7 +57,7 @@ BEGIN
    i := (-31) DIV 10 ;
    Assert(i=-4, __FILE__, __LINE__, "(-31) DIV 10") ;
 
-   (* and we allow ISO compatability *)
+   (* and we allow ISO compatibility *)
    i := (-31) / 10 ;
    Assert(i=-3, __FILE__, __LINE__, "(-31) / 10") ;
    exit(res)
