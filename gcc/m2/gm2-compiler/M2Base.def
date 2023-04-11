@@ -348,7 +348,7 @@ PROCEDURE CannotCheckTypeInPass3 (e: CARDINAL) : BOOLEAN ;
 (*
    MixTypes - returns the type symbol that corresponds to the types t1 and t2.
               NearTok is used to identify the source position if a type
-              incompatability occurs.
+              incompatibility occurs.
 *)
 
 PROCEDURE MixTypes (t1, t2: CARDINAL; NearTok: CARDINAL) : CARDINAL ;
