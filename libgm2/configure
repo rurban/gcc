@@ -22695,8 +22695,8 @@ $as_echo "no" >&6; }
    fi
 
 
-   { $as_echo "$as_me:${as_lineno-$LINENO}: checking m2 front end will build Logitech compatability libraries:" >&5
-$as_echo_n "checking m2 front end will build Logitech compatability libraries:... " >&6; }
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking m2 front end will build Logitech compatibility libraries:" >&5
+$as_echo_n "checking m2 front end will build Logitech compatibility libraries:... " >&6; }
    if test x${BUILD_LOGLIB} = xtrue; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }

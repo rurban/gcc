@@ -42314,13 +42314,13 @@ msgstr ""
 
 #: config/darwin.cc:2181
 #, fuzzy, gcc-internal-format
-#| msgid "%<%s%> 2.95 vtable-compatability attribute applies only when compiling a kext"
+#| msgid "%<%s%> 2.95 vtable-compatibility attribute applies only when compiling a kext"
 msgid "%qE 2.95 vtable-compatibility attribute applies only when compiling a kext"
 msgstr "%<%s%> атрибут сагласности в-табела са 2.95 примењује се само при компилацији у kext"
 
 #: config/darwin.cc:2188
 #, fuzzy, gcc-internal-format
-#| msgid "%<%s%> 2.95 vtable-compatability attribute applies only to C++ classes"
+#| msgid "%<%s%> 2.95 vtable-compatibility attribute applies only to C++ classes"
 msgid "%qE 2.95 vtable-compatibility attribute applies only to C++ classes"
 msgstr "%<%s%> атрибут сагласности в-табела са 2.95 примењује се само на Ц++ класе"
 

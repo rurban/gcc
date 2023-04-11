@@ -490,7 +490,7 @@ else
    GM2_MSG_RESULT([m2 front end will build PIM libraries:],[BUILD_PIMLIB])
    GM2_MSG_RESULT([m2 front end will build ISO libraries:],[BUILD_ISOLIB])
    GM2_MSG_RESULT([m2 front end will build coroutine libraries:],[BUILD_CORLIB])
-   GM2_MSG_RESULT([m2 front end will build Logitech compatability libraries:],[BUILD_LOGLIB])
+   GM2_MSG_RESULT([m2 front end will build Logitech compatibility libraries:],[BUILD_LOGLIB])
 fi
 
 AM_CONDITIONAL([BUILD_PIMLIB], [test x$BUILD_PIMLIB = xtrue])

@@ -23,7 +23,7 @@ DEFINITION MODULE opaquetype ;
     System     : GNU Modula-2
     Date       : Thu Oct 23 11:00:12 2003
     Revision   : $Version$ 
-    Description: simple type compatability test for opaques.
+    Description: simple type compatibility test for opaques.
 *)
 
 EXPORT QUALIFIED foo, bar;
