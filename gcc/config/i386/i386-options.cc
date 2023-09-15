@@ -3069,10 +3069,19 @@ ix86_option_override_internal (bool main_args_p,
         = build_target_option_node (opts, opts_set);
     }
 
+  const bool cf_okay_p = (TARGET_64BIT || TARGET_CMOV);
+  /* When -fhardened, enable -fcf-protection=full, but only when it's
+     compatible with this target, and when it wasn't already specified
+     on the command line.  */
+  if (opts->x_flag_hardened
+      && cf_okay_p
+      && opts->x_flag_cf_protection == CF_NONE)
+    opts->x_flag_cf_protection = CF_FULL;
+
   if (opts->x_flag_cf_protection != CF_NONE)
     {
       if ((opts->x_flag_cf_protection & CF_BRANCH) == CF_BRANCH
-	  && !TARGET_64BIT && !TARGET_CMOV)
+	  && !cf_okay_p)
 	error ("%<-fcf-protection%> is not compatible with this target");
 
       opts->x_flag_cf_protection

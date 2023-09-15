@@ -641,7 +641,7 @@ Objective-C and Objective-C++ Dialects}.
 -fasan-shadow-offset=@var{number}  -fsanitize-sections=@var{s1},@var{s2},...
 -fsanitize-undefined-trap-on-error  -fbounds-check
 -fcf-protection=@r{[}full@r{|}branch@r{|}return@r{|}none@r{|}check@r{]}
--fharden-compares -fharden-conditional-branches
+-fharden-compares -fharden-conditional-branches -fhardened
 -fstack-protector  -fstack-protector-all  -fstack-protector-strong
 -fstack-protector-explicit  -fstack-check
 -fstack-limit-register=@var{reg}  -fstack-limit-symbol=@var{sym}
@@ -17447,6 +17447,33 @@ optimizations, emit extra code to compute and verify the reversed
 condition, and to call @code{__builtin_trap} if the result is
 unexpected.  Use with @samp{-fharden-compares} to cover all
 conditionals.
+
+@opindex fhardened
+@item -fhardened
+Enable a set of flags for C and C++ that improve the security of the
+generated code without affecting its ABI.  The precise flags enabled
+may change between major releases of GCC, but are currently:
+
+@gccoptlist{
+-D_FORTIFY_SOURCE=3
+-D_GLIBCXX_ASSERTIONS
+-ftrivial-auto-var-init=pattern
+-fPIE  -pie  -Wl,-z,relro,-z,now
+-fstack-protector-strong
+-fstack-clash-protection
+-fcf-protection=full @r{(x86 GNU/Linux only)}
+}
+
+The list of options enabled by @option{-fhardened} can be generated using
+the @option{--help=hardened} option.
+
+When the system glibc is older than 2.35, @option{-D_FORTIFY_SOURCE=2}
+is used instead.
+
+@option{-fhardened} only enables a particular option if it wasn't
+already specified anywhere on the command line.  For instance,
+@option{-fhardened} @option{-fstack-protector} will only enable
+@option{-fstack-protector}, but not @option{-fstack-protector-strong}.
 
 @opindex fstack-protector
 @item -fstack-protector
