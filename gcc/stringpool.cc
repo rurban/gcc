@@ -240,7 +240,7 @@ class utf32_string
   DEBUG_FUNCTION void dump () const
   {
     pretty_printer pp;
-    pp.buffer->stream = stderr;
+    // pp.buffer->stream = stderr;
     dump_to_pp (&pp);
     pp_newline (&pp);
     pp_flush (&pp);
@@ -438,7 +438,7 @@ class utf8_string
   DEBUG_FUNCTION void dump () const
   {
     pretty_printer pp;
-    pp.buffer->stream = stderr;
+    // pp.buffer->stream = stderr;
     dump_to_pp (&pp);
     pp_newline (&pp);
     pp_flush (&pp);
